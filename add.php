@@ -11,6 +11,6 @@ VALUES('$name','$course')";
 
 mysqli_query($conn,$sql);
 
-header("Location:index.php");
+ //header("Location:index.php");
 
 ?>
