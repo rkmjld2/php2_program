@@ -6,12 +6,36 @@ $user = "ax6KHc1BNkyuaor.root";
 $password = "EP8isIWoEOQk7DSr";
 $dbname = "studentdb";
 
+/* Initialize MySQLi */
+$conn = mysqli_init();
 
+/* Enable SSL/TLS */
+mysqli_ssl_set(
+    $conn,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL
+);
 
-$conn=mysqli_connect($host,$user,$password,$dbname);
+/* Connect to TiDB Cloud using SSL */
+mysqli_real_connect(
+    $conn,
+    $host,
+    $user,
+    $password,
+    $dbname,
+    $port,
+    NULL,
+    MYSQLI_CLIENT_SSL
+);
 
-if(!$conn)
-{
-die("Connection Failed");
+/* Check connection */
+if (mysqli_connect_errno()) {
+    die("Connection Failed: " . mysqli_connect_error());
 }
+
+echo "TiDB Cloud connection successful!";
+
 ?>
